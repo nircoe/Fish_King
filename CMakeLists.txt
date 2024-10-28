@@ -41,6 +41,9 @@ set(SOURCES
 )
 add_executable(${PROJECT_NAME} ${SOURCES})
 
+# Add the include directory so that headers can be referenced directly
+target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/include)
+
 # Set output name based on build type
 set_target_properties(${PROJECT_NAME} PROPERTIES 
     CXX_STANDARD 17

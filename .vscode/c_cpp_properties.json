@@ -3,7 +3,7 @@
         {
             "name": "Win32",
             "includePath": [
-                "${workspaceFolder}/**",
+                "${workspaceFolder}/include/**",
                 "C:/raylib/raylib/src/**",
                 "C:/Libraries/raylib-cpp/include/**"
             ],
@@ -18,8 +18,7 @@
             "compilerPath": "C:/raylib/w64devkit/bin/g++.exe",
             "cStandard": "c99",
             "cppStandard": "c++17",
-            "intelliSenseMode": "gcc-x64",
-            "configurationProvider": "ms-vscode.makefile-tools"
+            "intelliSenseMode": "gcc-x64"
         }
     ],
     "version": 4
