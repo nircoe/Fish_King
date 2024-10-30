@@ -8,7 +8,7 @@
           "name": "Debug",
           "type": "cppdbg",
           "request": "launch",
-          "program": "${workspaceFolder}/build/raylib_tutorials.exe",
+          "program": "${workspaceFolder}/build/FishKing.exe",
           "args": [],
           "stopAtEntry": false,
           "cwd": "${workspaceFolder}",
@@ -42,10 +42,10 @@
           "cwd": "${workspaceFolder}",
           "environment": [],
           "externalConsole": false,
-          "program": "${workspaceFolder}/build/raylib_tutorials.exe",
+          "program": "${workspaceFolder}/build/FishKing.exe",
           "MIMode": "gdb",
           "windows": {
-            "program": "${workspaceFolder}/build/raylib_tutorials.exe",
+            "program": "${workspaceFolder}/build/FishKing.exe",
             "miDebuggerPath": "C:/raylib/w64devkit/bin/gdb.exe"
           },
           "osx": {

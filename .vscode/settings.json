@@ -52,5 +52,5 @@
 		"streambuf": "cpp",
 		"typeinfo": "cpp"
 	},
-	"C_Cpp.default.compilerPath": "C:/raylib/w64devkit/bin/g++.exe"
+	"C_Cpp.default.compilerPath": "C:\\raylib\\w64devkit\\bin\\g++.exe"
 }
