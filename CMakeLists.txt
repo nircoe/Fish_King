@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
-project(raylib_tutorials) # My Project Name
+project(FishKing) # My Project Name
+
+set_property(GLOBAL PROPERTY PROJECT_NAME "Fish King")
 
 # Set compiler flags for different build types
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g")   # Debug flags
