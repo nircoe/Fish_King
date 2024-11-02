@@ -50,7 +50,11 @@
 		"ostream": "cpp",
 		"stdexcept": "cpp",
 		"streambuf": "cpp",
-		"typeinfo": "cpp"
+		"typeinfo": "cpp",
+		"optional": "cpp",
+		"iostream": "cpp",
+		"istream": "cpp",
+		"cinttypes": "cpp"
 	},
 	"C_Cpp.default.compilerPath": "C:\\raylib\\w64devkit\\bin\\g++.exe"
 }
