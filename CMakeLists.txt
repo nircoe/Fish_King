@@ -38,6 +38,13 @@ endif()
 # This is the main part:
 # My source files here:
 set(SOURCES 
+    src/game_object.cpp
+    src/moveable.cpp
+    src/interactable.cpp
+    src/player.cpp
+    src/enemy.cpp
+    src/npc.cpp
+    src/scene.cpp
     src/main.cpp
     # any other source file in the future
 )

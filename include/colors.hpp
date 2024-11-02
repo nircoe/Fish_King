@@ -6,41 +6,40 @@
 namespace Colors
 {
 
-    #define VERY_LIGHT_OCEAN    CLITERAL(Color){ 222, 243, 246, 255 }     // Very Light Ocean
-    #define LIGHT_OCEAN         CLITERAL(Color){ 29, 162, 216, 255 }      // Light Ocean
-    #define OCEAN               CLITERAL(Color){ 127, 205, 255, 255 }     // Ocean
-    #define DARK_OCEAN          CLITERAL(Color){ 118, 182, 196, 255 }     // Dark Ocean
-    #define VERY_DARK_OCEAN     CLITERAL(Color){ 6, 66, 115, 255 }        // Very Dark Ocean
+    #define VERY_LIGHT_OCEAN    CLITERAL(Color){ 222, 243, 246, 255 }       // Very Light Ocean
+    #define LIGHT_OCEAN         CLITERAL(Color){ 135, 206, 250, 255 }       // Light Ocean
+    #define OCEAN               CLITERAL(Color){ 102, 204, 255, 255 }       // Ocean
+    #define DARK_OCEAN          CLITERAL(Color){ 0, 102, 204, 255 }         // Dark Ocean
+    #define VERY_DARK_OCEAN     CLITERAL(Color){ 0, 51, 102, 255 }          // Very Dark Ocean
 
     const std::vector<Color> OCEAN_PALETTE = { VERY_LIGHT_OCEAN, LIGHT_OCEAN, OCEAN, DARK_OCEAN, VERY_DARK_OCEAN }; // Ocean Color Palette
 
 
-    Color TransitionColorPalette(const std::vector<Color>& colorPalette, const float transitionDuration, float& timeElapsed, int& index, bool& goingForward)
+    Color transitionColorPalette(const std::vector<Color> colorPalette, const float cameraTargetY)
     {
-        timeElapsed += GetFrameTime();
+        const float jumps = 300.0f, bottom = -600.0f;
+        std::vector<float> depths = { bottom };
 
-        int nextIndex = goingForward ? index + 1 : index - 1;
-        nextIndex = std::clamp(nextIndex, 0, static_cast<int>(colorPalette.size() - 1));
-
-        float t = timeElapsed / (transitionDuration / (colorPalette.size() - 1));
-        if(t > 1.0f)
-            t = 1.0f;
-        
-        Color currentColor = {  static_cast<unsigned char>(colorPalette[index].r + t * (colorPalette[nextIndex].r - colorPalette[index].r)),
-                                static_cast<unsigned char>(colorPalette[index].g + t * (colorPalette[nextIndex].g - colorPalette[index].g)),
-                                static_cast<unsigned char>(colorPalette[index].b + t * (colorPalette[nextIndex].b - colorPalette[index].b)),
-                                255};
-        
-        if(timeElapsed >= transitionDuration)
+        for(int i = 1; i < colorPalette.size(); ++i)
         {
-            timeElapsed = 0.0f;
-            index = nextIndex;
-            if(index == colorPalette.size() - 1 || index == 0)
-                goingForward = !goingForward;
+            depths.push_back(depths[i - 1] + jumps);
         }
 
-        return currentColor;
+        for(int i = 0; i < depths.size() - 1; ++i)
+        {
+            if(cameraTargetY <= depths[i])
+            {
+                return colorPalette[i];
+            }
+            if(depths[i] < cameraTargetY && cameraTargetY < depths[i + 1])
+            {
+                float t = (cameraTargetY - depths[i]) / jumps;
+                return {    static_cast<unsigned char>(colorPalette[i].r + t * (colorPalette[i + 1].r - colorPalette[i].r)),
+                            static_cast<unsigned char>(colorPalette[i].g + t * (colorPalette[i + 1].g - colorPalette[i].g)),
+                            static_cast<unsigned char>(colorPalette[i].b + t * (colorPalette[i + 1].b - colorPalette[i].b)),
+                            255 };
+            }
+        }
+        return colorPalette.back();
     }
-
-    // make TransitionColorPalette based on x or y axis position (go deeper in the ocean will become darker)
 }
