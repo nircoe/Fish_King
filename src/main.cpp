@@ -71,6 +71,7 @@ int main()
 {
     // Awake
     const std::pair<int, int> ScreenSize = std::pair<int, int>(800, 800);
+    const raylib::Vector2 fScreenSize = raylib::Vector2((float)ScreenSize.first, (float)ScreenSize.second);
     const int TargetFPS = 120;
     const float BackgroundTransitionDuration = 60.0f;
     const float MovementSpeed = 3.0f;
@@ -87,7 +88,7 @@ int main()
     
     raylib::Vector2 characterPos = raylib::Vector2();
     raylib::Color textColor = raylib::Color::Black();
-    raylib::Camera2D camera = raylib::Camera2D({ScreenSize.first / 2, ScreenSize.second / 2}, {0.0f, 0.0f});
+    raylib::Camera2D camera = raylib::Camera2D({fScreenSize.x / 2, fScreenSize.y / 2}, {0.0f, 0.0f});
     raylib::Window window(ScreenSize.first, ScreenSize.second, "Fish King");
 
     // Start
