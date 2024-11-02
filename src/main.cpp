@@ -62,15 +62,16 @@ void WindowSettings(raylib::Window& window, const int TargetFPS, const raylib::I
 void HandleText(raylib::Window& window, raylib::Camera2D& camera, const int TargetFPS)
 {
     const char* targetFPSStr = TargetFPS > 0 ? TextFormat("Target FPS: %i", TargetFPS) : "Target FPS: MAX";
-    raylib::Vector2 fpsPos = raylib::Vector2(50.0f, 50.0f);
-    DrawText(targetFPSStr, fpsPos.x, fpsPos.y, 20, BLACK);
-    DrawText(TextFormat("Current FPS: %i", window.GetFPS()), fpsPos.x, fpsPos.y + 50.0f, 20, BLACK);
+    std::pair<int, int> fpsPos = std::pair<int, int>(50, 50);
+    DrawText(targetFPSStr, fpsPos.first, fpsPos.second, 20, BLACK);
+    DrawText(TextFormat("Current FPS: %i", window.GetFPS()), fpsPos.first, fpsPos.second + 50, 20, BLACK);
 }
 
 int main() 
 {
     // Awake
-    const raylib::Vector2 ScreenSize = raylib::Vector2(800.0f, 800.0f);
+    const std::pair<int, int> ScreenSize = std::pair<int, int>(800, 800);
+    const raylib::Vector2 fScreenSize = raylib::Vector2((float)ScreenSize.first, (float)ScreenSize.second);
     const int TargetFPS = 120;
     const float BackgroundTransitionDuration = 60.0f;
     const float MovementSpeed = 3.0f;
@@ -87,8 +88,8 @@ int main()
     
     raylib::Vector2 characterPos = raylib::Vector2();
     raylib::Color textColor = raylib::Color::Black();
-    raylib::Camera2D camera = raylib::Camera2D({ScreenSize.x / 2, ScreenSize.y / 2}, {0.0f, 0.0f});
-    raylib::Window window(ScreenSize.x, ScreenSize.y, "Fish King");
+    raylib::Camera2D camera = raylib::Camera2D({fScreenSize.x / 2, fScreenSize.y / 2}, {0.0f, 0.0f});
+    raylib::Window window(ScreenSize.first, ScreenSize.second, "Fish King");
 
     // Start
     WindowSettings(window, TargetFPS, IconImage);
